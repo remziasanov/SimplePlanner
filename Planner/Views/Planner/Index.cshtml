@@ -1,0 +1,45 @@
+﻿@model List<Planner.Models.TaskItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (Model.Count == 0)
+{
+    <div><p style="font-size:30px">Список дел пустой</p></div>
+    <a href="~/Planner/AddItem" class="btn btn-success" style="margin-top:1px">Добавить пункт</a>
+}
+else
+{
+    <div>
+        <a href="~/Planner/AddItem" class="btn btn-success" style="margin-top:10px">Добавить пункт</a>
+    </div>
+    <h2>Список дел</h2>
+    <table class="table">
+        <tr>
+            <th>
+                Заголовок
+            </th>
+            <th>
+                Дата создания
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemContent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Datetime)
+                </td>
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
