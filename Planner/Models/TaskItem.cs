@@ -14,6 +14,9 @@ namespace Planner.Models
         public string ItemContent { get; set; }
         [Required(ErrorMessage = "Поле должно быть установлено")]
         [Display(Name = "Дата создания пункта")]
+        [DataType(DataType.DateTime)]
         public DateTime Datetime { get; set; }
+        [Display(Name = "Выполнение")]
+        public bool TaskCompleted { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace Planner.DataBaseManager
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Ошибка валидации" + ex.Message.ToString());
+                    Console.WriteLine("Ошибка :" + ex.Message.ToString());
                     Console.ReadLine();
                     result = null;
                 }
@@ -50,6 +50,7 @@ namespace Planner.DataBaseManager
             if (item != null)
             {
                 item.Id = Guid.NewGuid();
+                item.TaskCompleted = false;
                 item.Datetime = DateTime.Now;
                 using (DataBaseContext db = new DataBaseContext())
                 {
@@ -91,6 +92,7 @@ namespace Planner.DataBaseManager
                 {
                     item2.ItemContent = item.ItemContent;
                     item2.Datetime = DateTime.Now;
+                    item2.TaskCompleted = item.TaskCompleted;
                     await db.SaveChangesAsync();
                     return true;
                 }
